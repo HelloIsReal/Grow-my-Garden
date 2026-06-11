@@ -1,0 +1,20 @@
+#BlueJ class context
+comment0.target=Plant
+comment0.text=\r\n\ Write\ a\ description\ of\ class\ Plant\ here.\r\n\r\n\ @author\ (your\ name)\r\n\ @version\ (a\ version\ number\ or\ a\ date)\r\n
+comment1.params=plantType\ plantValue
+comment1.target=Plant(java.lang.String,\ double)
+comment2.params=plantType
+comment2.target=void\ setPlantType(java.lang.String)
+comment3.params=plantValue
+comment3.target=void\ setPlantValue(double)
+comment4.params=
+comment4.target=java.time.LocalDateTime\ getPlantedDate()
+comment5.params=
+comment5.target=java.lang.String\ getPlantType()
+comment6.params=
+comment6.target=double\ getPlantValue()
+comment7.params=modifier
+comment7.target=void\ addModifier(java.lang.String)
+comment8.params=
+comment8.target=void\ getModifiers()
+numComments=9
