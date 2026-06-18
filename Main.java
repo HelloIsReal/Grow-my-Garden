@@ -13,6 +13,7 @@ public class Main
         boolean menu=true;
         boolean inGame=true;
         boolean debug=true;
+        
 
         gardenPlants Garden = new gardenPlants();
         Events events = new Events();
@@ -44,17 +45,20 @@ public class Main
 
             }
         }
-            System.out.println("\n================================");
-            System.out.println("Welcome to Grow my Garden!");
-            
+        System.out.println("\n================================");
+        System.out.println("Welcome to Grow my Garden!");
+
         while(inGame){
             System.out.println("================================");
             System.out.println("What would you like to do?");
+            System.out.println("You currently have "+Garden.getGold()+"g");
             System.out.println("================================");
-            
+
             System.out.println("1) View Garden");
-            System.out.println("2) Plant a new crop");
-            System.out.println("3) Harvest a plant from my garden");
+            System.out.println("2) Purchase plant seeds");
+            System.out.println("3) Plant a new crop using seeds");
+            System.out.println("4) Harvest a plant from my garden");
+            System.out.println("5) View inventory");
             System.out.println("================================");
 
             while(!keyboard.hasNextInt()){
@@ -68,23 +72,26 @@ public class Main
                     Garden.printGarden();
                     break;
                 case 2:
-                    Garden.newPlant();
+                    Garden.buyPlant();
                     break;
                 case 3:
+                    Garden.newPlant();
+                    break;
+                case 4:
                     Garden.harvestPlant();
+                    break;
+                case 5:
+                    Garden.getInventory();
+                    break;
+                
+                case 9:
+                    System.out.println(events.startEvent());
+                    break;
                 default:
-                    if(debug){
-                        switch (userOption){
-                            case 4:
-                                System.out.println(events.startEvent());
-                                break;
-                        }
-                    } else {
-                     System.out.println("Invalid option. Try again\n");
-                    }
+                    System.out.println("Invalid option. Try again\n");
             }
         }
-            //Garden.newPlant();
-            //Garden.printGarden();
+        //Garden.newPlant();
+        //Garden.printGarden();
     }
 }

@@ -9,7 +9,13 @@ import java.util.ArrayList;
 import java.util.Scanner;
 public class gardenPlants
 {
+    String[] seeds = {"strawberry", "tomato", "pepper", "mango"};
+    int[] seedPrices = {5,10,15,50};
+
+    int gold=100;
+    
     private ArrayList<Plant> gardenPlants = new ArrayList<Plant>();
+    private ArrayList<String> inventory = new ArrayList<String>();
     Plant[][] plots = new Plant[3][3]; 
     public gardenPlants(){
         System.out.println("garden created!");
@@ -36,6 +42,48 @@ public class gardenPlants
         plots[plotX][plotY] = newPlant; 
         } else {
             System.out.println("That plot already has a plant in it!");
+        }
+    }
+
+    public void buyPlant(){
+        Scanner keyboard = new Scanner(System.in);
+        //List plants
+        
+        String selectedSeed = "none";
+        boolean validOption=false;
+        
+        while(!validOption){
+            System.out.println("Which plant would you like to buy?");
+            for(int i=0; i<seeds.length; i++){
+                System.out.println(seeds[i]+" - "+seedPrices[i]+"g");
+            }
+            selectedSeed = keyboard.nextLine();
+            for(int i=0; i<seeds.length; i++){
+                if(seeds[i].equals(selectedSeed)){
+                    validOption=true;
+                    if(gold>=seedPrices[i]){
+                        System.out.println("================================");
+                        System.out.println("purchased a "+seeds[i]+" seed!");
+                        System.out.println("-"+(gold-seedPrices[i])+"g");
+                        gold = gold - seedPrices[i];
+                        inventory.add(seeds[i]+" seed");
+                   } else {
+                    System.out.println("insufficient gold!");
+                   }
+                }
+            }
+            if(!validOption){
+                System.out.println("Invalid input, please enter a valid seed!\n");
+            }
+        }
+    }
+    public int getGold(){
+        return(this.gold);
+    }
+    public void getInventory(){
+        System.out.println("Your inventory currently is:");
+        for(int i=0; i<inventory.size(); i++){
+            System.out.println("- "+inventory.get(i));
         }
     }
 
