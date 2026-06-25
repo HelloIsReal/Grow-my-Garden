@@ -13,7 +13,7 @@ public class Main
         boolean menu=true;
         boolean inGame=true;
         boolean debug=true;
-        
+
 
         gardenPlants Garden = new gardenPlants();
         Events events = new Events();
@@ -42,7 +42,6 @@ public class Main
                     break;
                 default:
                     System.out.println("Invalid option. Try again");
-
             }
         }
         System.out.println("\n================================");
@@ -54,7 +53,7 @@ public class Main
             System.out.println("You currently have "+Garden.getGold()+"g");
             System.out.println("================================");
 
-            System.out.println("1) View Garden");
+            System.out.println("1) Go to my Garden");
             System.out.println("2) Purchase plant seeds");
             System.out.println("3) Plant a new crop using seeds");
             System.out.println("4) Harvest a plant from my garden");
@@ -69,7 +68,7 @@ public class Main
             keyboard.nextLine();
             switch (userOption){
                 case 1:
-                    Garden.printGarden();
+                    Garden.checkGarden();
                     break;
                 case 2:
                     Garden.buyPlant();
@@ -81,7 +80,7 @@ public class Main
                     Garden.harvestPlant();
                     break;
                 case 5:
-                    Garden.getInventory();
+                    Garden.printInventory();
                     break;
                 
                 case 9:
@@ -91,7 +90,5 @@ public class Main
                     System.out.println("Invalid option. Try again\n");
             }
         }
-        //Garden.newPlant();
-        //Garden.printGarden();
     }
 }

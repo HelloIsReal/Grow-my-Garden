@@ -17,32 +17,76 @@ public class gardenPlants
     private ArrayList<Plant> gardenPlants = new ArrayList<Plant>();
     private ArrayList<String> inventory = new ArrayList<String>();
     Plant[][] plots = new Plant[3][3]; 
+
     public gardenPlants(){
         System.out.println("garden created!");
     }
 
     public void newPlant(){
         Scanner keyboard = new Scanner(System.in);
-        Plant newPlant = new Plant("none",0);
 
-        System.out.println("What type of plant?");
-        newPlant.setPlantType(keyboard.nextLine().toLowerCase());
-        //String plantType = keyboard.nextLine();
 
-        System.out.println("Plant value?");
-        newPlant.setPlantValue(keyboard.nextInt());
-        //double plantValue = keyboard.nextDouble();
-
-        System.out.println("Which plot to place in?");
-        printGarden();
-        System.out.println("X value first, Y value after (each value seperately))");
-        int plotX = keyboard.nextInt();
-        int plotY = keyboard.nextInt();
-        if(plots[plotX][plotY] == null){
-        plots[plotX][plotY] = newPlant; 
-        } else {
-            System.out.println("That plot already has a plant in it!");
+        System.out.println("Which plants in your inventory do you want to place?");
+        printInventory();
+        String userInput = keyboard.nextLine().toLowerCase();
+        while(!inventory.contains(userInput) || userInput == "none"){
+            System.out.println("Invalid Option, please try again!");
         }
+        if(userInput !="none"){
+            Plant newPlant = new Plant("none",0);
+            boolean seedFound=false;
+            // while(seedFound=false){
+                
+            // }
+            for(int i=0; seedFound=false; i++){
+                if (inventory.get(i).equals(userInput)){
+                    seedFound=true;
+                    newPlant.setPlantType(inventory.get(i).toLowerCase());
+                    inventory.remove(i);
+                    newPlant.setPlantValue(10);
+
+                    boolean findingPlot=true;
+                    while(findingPlot){
+                    System.out.println("Which plot to place in?");
+                    checkGarden();
+                    System.out.println("X value first, Y value after (each value seperately))");
+                    int plotX = keyboard.nextInt();
+                    int plotY = keyboard.nextInt();
+                    if(plots[plotX][plotY] == null){
+                        plots[plotX][plotY] = newPlant; 
+                        findingPlot=false;
+                    } else {
+                        System.out.println("That plot already has a plant in it!");
+                    }
+                    }
+
+                    
+                }
+            }
+        }
+
+
+
+        // Plant newPlant = new Plant("none",0);
+
+        // System.out.println("What type of plant?");
+        // newPlant.setPlantType(keyboard.nextLine().toLowerCase());
+        // //String plantType = keyboard.nextLine();
+
+        // System.out.println("Plant value?");
+        // newPlant.setPlantValue(keyboard.nextInt());
+        // //double plantValue = keyboard.nextDouble();
+
+        // System.out.println("Which plot to place in?");
+        // checkGarden();
+        // System.out.println("X value first, Y value after (each value seperately))");
+        // int plotX = keyboard.nextInt();
+        // int plotY = keyboard.nextInt();
+        // if(plots[plotX][plotY] == null){
+        // plots[plotX][plotY] = newPlant; 
+        // } else {
+        //     System.out.println("That plot already has a plant in it!");
+        // }
     }
 
     public void buyPlant(){
@@ -80,7 +124,7 @@ public class gardenPlants
     public int getGold(){
         return(this.gold);
     }
-    public void getInventory(){
+    public void printInventory(){
         System.out.println("Your inventory currently is:");
         for(int i=0; i<inventory.size(); i++){
             System.out.println("- "+inventory.get(i));
@@ -89,8 +133,7 @@ public class gardenPlants
 
     public void harvestPlant(){
         Scanner keyboard = new Scanner(System.in);
-        printGarden();
-
+        checkGarden();
         System.out.print("which plant to harvest?");
         System.out.println("X value first, Y value after (each value seperately))");
         int plotX = keyboard.nextInt();
@@ -105,7 +148,7 @@ public class gardenPlants
 
     }
 
-    public void printGarden(){
+    public void checkGarden(){
         for(int y=0; y<plots.length; y++){
             System.out.print("|");
             for(int x=0; x<plots.length; x++){
