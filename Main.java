@@ -14,7 +14,6 @@ public class Main
         boolean inGame=true;
         boolean debug=true;
 
-
         gardenPlants Garden = new gardenPlants();
         Events events = new Events();
 
@@ -82,7 +81,7 @@ public class Main
                 case 5:
                     Garden.printInventory();
                     break;
-                
+
                 case 9:
                     System.out.println(events.startEvent());
                     break;

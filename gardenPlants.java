@@ -13,7 +13,7 @@ public class gardenPlants
     int[] seedPrices = {5,10,15,50};
 
     int gold=100;
-    
+
     private ArrayList<Plant> gardenPlants = new ArrayList<Plant>();
     private ArrayList<String> inventory = new ArrayList<String>();
     Plant[][] plots = new Plant[3][3]; 
@@ -25,7 +25,6 @@ public class gardenPlants
     public void newPlant(){
         Scanner keyboard = new Scanner(System.in);
 
-
         System.out.println("Which plants in your inventory do you want to place?");
         printInventory();
         String userInput = keyboard.nextLine().toLowerCase();
@@ -36,7 +35,7 @@ public class gardenPlants
             Plant newPlant = new Plant("none",0);
             boolean seedFound=false;
             // while(seedFound=false){
-                
+
             // }
             for(int i=0; seedFound=false; i++){
                 if (inventory.get(i).equals(userInput)){
@@ -47,28 +46,24 @@ public class gardenPlants
 
                     boolean findingPlot=true;
                     while(findingPlot){
-                    System.out.println("Which plot to place in?");
-                    checkGarden();
-                    System.out.println("X value first, Y value after (each value seperately))");
-                    int plotX = keyboard.nextInt();
-                    int plotY = keyboard.nextInt();
-                    if(plots[plotX][plotY] == null){
-                        plots[plotX][plotY] = newPlant; 
-                        findingPlot=false;
-                    } else {
-                        System.out.println("That plot already has a plant in it!");
-                    }
+                        System.out.println("Which plot to place in?");
+                        checkGarden();
+                        System.out.println("X value first, Y value after (each value seperately))");
+                        int plotX = keyboard.nextInt();
+                        int plotY = keyboard.nextInt();
+                        if(plots[plotX][plotY] == null){
+                            plots[plotX][plotY] = newPlant; 
+                            findingPlot=false;
+                        } else {
+                            System.out.println("That plot already has a plant in it!");
+                        }
                     }
 
-                    
                 }
             }
         }
 
-
-
         // Plant newPlant = new Plant("none",0);
-
         // System.out.println("What type of plant?");
         // newPlant.setPlantType(keyboard.nextLine().toLowerCase());
         // //String plantType = keyboard.nextLine();
@@ -92,10 +87,10 @@ public class gardenPlants
     public void buyPlant(){
         Scanner keyboard = new Scanner(System.in);
         //List plants
-        
+
         String selectedSeed = "none";
         boolean validOption=false;
-        
+
         while(!validOption){
             System.out.println("Which plant would you like to buy?");
             for(int i=0; i<seeds.length; i++){
@@ -111,9 +106,9 @@ public class gardenPlants
                         System.out.println("-"+(gold-seedPrices[i])+"g");
                         gold = gold - seedPrices[i];
                         inventory.add(seeds[i]+" seed");
-                   } else {
-                    System.out.println("insufficient gold!");
-                   }
+                    } else {
+                        System.out.println("insufficient gold!");
+                    }
                 }
             }
             if(!validOption){
@@ -121,9 +116,11 @@ public class gardenPlants
             }
         }
     }
+
     public int getGold(){
         return(this.gold);
     }
+
     public void printInventory(){
         System.out.println("Your inventory currently is:");
         for(int i=0; i<inventory.size(); i++){
@@ -155,18 +152,18 @@ public class gardenPlants
                 if(plots[x][y] == null){
                     System.out.print("X|");
                 }else if(plots[x][y].getPlantType().equals("mango")){
-                        System.out.print("M|");
+                    System.out.print("M|");
                 }else if(plots[x][y].getPlantType().equals("pepper")){
-                        System.out.print("P|");
+                    System.out.print("P|");
                 }
-                    // if(this.plots[x][y] != null){
-                        // System.out.print(plots[x][y].getPlantType()+"|");
-                    // } else {
-                        // System.out.print("None|");
-                    // }   
-                }
-                System.out.println("");
-                
+                // if(this.plots[x][y] != null){
+                // System.out.print(plots[x][y].getPlantType()+"|");
+                // } else {
+                // System.out.print("None|");
+                // }   
             }
+            System.out.println("");
+
         }
     }
+}
