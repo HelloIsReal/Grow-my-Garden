@@ -25,7 +25,7 @@ public class gardenPlants
     public void newPlant(){
         Scanner keyboard = new Scanner(System.in);
 
-        System.out.println("Which plants in your inventory do you want to place?");
+        System.out.println("Which plants in your inventory do you want to place? (type 'none' to exit)");
         printInventory();
         String userInput = keyboard.nextLine().toLowerCase();
         while(!inventory.contains(userInput) || userInput == "none"){
@@ -34,14 +34,20 @@ public class gardenPlants
         if(userInput !="none"){
             Plant newPlant = new Plant("none",0);
             boolean seedFound=false;
+            boolean noSeed=false;
             // while(seedFound=false){
 
             // }
-            for(int i=0; seedFound=false; i++){
-                if (inventory.get(i).equals(userInput)){
+            int count=0;
+            while(seedFound=false && noSeed==false){
+                count++;
+            //for(int i=0; seedFound==true; i++){
+                System.out.println("checking");
+                if (inventory.get(count) == userInput){
+                    
                     seedFound=true;
-                    newPlant.setPlantType(inventory.get(i).toLowerCase());
-                    inventory.remove(i);
+                    newPlant.setPlantType(inventory.get(count).toLowerCase());
+                    inventory.remove(count);
                     newPlant.setPlantValue(10);
 
                     boolean findingPlot=true;
@@ -105,7 +111,7 @@ public class gardenPlants
                         System.out.println("purchased a "+seeds[i]+" seed!");
                         System.out.println("-"+(gold-seedPrices[i])+"g");
                         gold = gold - seedPrices[i];
-                        inventory.add(seeds[i]+" seed");
+                        inventory.add(seeds[i]);
                     } else {
                         System.out.println("insufficient gold!");
                     }
