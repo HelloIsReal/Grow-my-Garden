@@ -33,21 +33,20 @@ public class gardenPlants
         }
         if(userInput !="none"){
             Plant newPlant = new Plant("none",0);
-            boolean seedFound=false;
-            boolean noSeed=false;
+            // boolean seedFound=false;
+            // boolean noSeed=false;
             // while(seedFound=false){
 
             // }
-            int count=0;
-            while(seedFound=false && noSeed==false){
-                count++;
-            //for(int i=0; seedFound==true; i++){
+            // while(seedFound=false && noSeed==false){
+            //     count++;
+            for(int i=0; i<inventory.size(); i++){
                 System.out.println("checking");
-                if (inventory.get(count) == userInput){
+                if (inventory.get(i) == userInput){
                     
-                    seedFound=true;
-                    newPlant.setPlantType(inventory.get(count).toLowerCase());
-                    inventory.remove(count);
+                    // seedFound=true;
+                    newPlant.setPlantType(inventory.get(i).toLowerCase());
+                    inventory.remove(i);
                     newPlant.setPlantValue(10);
 
                     boolean findingPlot=true;
