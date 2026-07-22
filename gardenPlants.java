@@ -30,7 +30,9 @@ public class gardenPlants
         String userInput = keyboard.nextLine().toLowerCase();
         while(!inventory.contains(userInput) || userInput == "none"){
             System.out.println("Invalid Option, please try again!");
+            userInput = keyboard.nextLine();
         }
+
         if(userInput !="none"){
             Plant newPlant = new Plant("none",0);
             // boolean seedFound=false;
@@ -40,10 +42,13 @@ public class gardenPlants
             // }
             // while(seedFound=false && noSeed==false){
             //     count++;
+            //System.out.println("User input: "+userInput);
+            //System.out.println(inventory.size());
             for(int i=0; i<inventory.size(); i++){
-                System.out.println("checking");
-                if (inventory.get(i) == userInput){
-                    
+                System.out.println(inventory.get(i));
+                System.out.println("User input: "+userInput);
+                if (inventory.get(i).equals(userInput)){
+                    System.out.println("found "+userInput);
                     // seedFound=true;
                     newPlant.setPlantType(inventory.get(i).toLowerCase());
                     inventory.remove(i);
@@ -160,6 +165,8 @@ public class gardenPlants
                     System.out.print("M|");
                 }else if(plots[x][y].getPlantType().equals("pepper")){
                     System.out.print("P|");
+                }else{
+                    System.out.print("?|");
                 }
                 // if(this.plots[x][y] != null){
                 // System.out.print(plots[x][y].getPlantType()+"|");
