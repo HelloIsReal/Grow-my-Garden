@@ -10,10 +10,12 @@ public class Main
 {
     public static void main(String args[]){
         Scanner keyboard = new Scanner(System.in);
+        final int REFRESHLENGTH = 100;
         boolean menu=true;
         boolean inGame=true;
         boolean debug=true;
 
+        
         gardenPlants Garden = new gardenPlants();
         Events events = new Events();
 
@@ -67,19 +69,25 @@ public class Main
             keyboard.nextLine();
             switch (userOption){
                 case 1:
+                    refreshScreen(REFRESHLENGTH);
                     Garden.checkGarden();
                     break;
                 case 2:
+                    refreshScreen(REFRESHLENGTH);
                     Garden.buyPlant();
                     break;
                 case 3:
+                    refreshScreen(REFRESHLENGTH);
                     Garden.newPlant();
                     break;
                 case 4:
+                    refreshScreen(REFRESHLENGTH);
                     Garden.harvestPlant();
                     break;
                 case 5:
+                    refreshScreen(REFRESHLENGTH);
                     Garden.printInventory();
+                    
                     break;
 
                 case 9:
@@ -88,6 +96,11 @@ public class Main
                 default:
                     System.out.println("Invalid option. Try again\n");
             }
+        }
+    }
+    public static void refreshScreen(int length){
+        for(int i=0; i<length; i++){
+            System.out.println();
         }
     }
 }

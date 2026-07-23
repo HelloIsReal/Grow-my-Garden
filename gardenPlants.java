@@ -9,12 +9,13 @@ import java.util.ArrayList;
 import java.util.Scanner;
 public class gardenPlants
 {
+    
     String[] seeds = {"strawberry", "tomato", "pepper", "mango"};
     int[] seedPrices = {5,10,15,50};
 
     int gold=100;
 
-    private ArrayList<Plant> gardenPlants = new ArrayList<Plant>();
+    //private ArrayList<Plant> gardenPlants = new ArrayList<Plant>();
     private ArrayList<String> inventory = new ArrayList<String>();
     Plant[][] plots = new Plant[3][3]; 
 
@@ -154,20 +155,25 @@ public class gardenPlants
         }
 
     }
-
+    private ArrayList<String> tempGrowthStages = new ArrayList<String>();
     public void checkGarden(){
+        tempGrowthStages.clear();
         for(int y=0; y<plots.length; y++){
             System.out.print("|");
+            
             for(int x=0; x<plots.length; x++){
                 if(plots[x][y] == null){
                     System.out.print("X|");
                 }else if(plots[x][y].getPlantType().equals("mango")){
                     System.out.print("M|");
+                    tempGrowthStages.add(plots[x][y].getPlantStage());
                 }else if(plots[x][y].getPlantType().equals("pepper")){
                     System.out.print("P|");
+                    tempGrowthStages.add(plots[x][y].getPlantStage());
                 }else{
                     System.out.print("?|");
                 }
+                
                 // if(this.plots[x][y] != null){
                 // System.out.print(plots[x][y].getPlantType()+"|");
                 // } else {
@@ -175,7 +181,13 @@ public class gardenPlants
                 // }   
             }
             System.out.println("");
+        
 
         }
+        for(int i=0; i<tempGrowthStages.size(); i++){
+            System.out.println(tempGrowthStages.get(i));
+        }
+
     }
+    
 }

@@ -10,6 +10,7 @@ public class Plant
 {
     private String plantType;
     private double plantValue;
+    private int[] growthTime = {3,5,10};
     // Frozen = 10x (Replaces wet if gotten, happens on freezing rainy days. 1/4 chance to replace rainy days)
     // Wet = 2x (Happens during rainy days, common)
     // Electrified = 3x (Happens during thunderstorms.)
@@ -50,6 +51,11 @@ public class Plant
 
     public void addModifier(String modifier){
         plantModifiers.add(modifier);
+    }
+
+    public String getPlantStage(){
+        Duration duration = Duration.between(plantedTime,LocalDateTime.now());
+        return(duration.toString());
     }
 
     public void getModifiers(){
