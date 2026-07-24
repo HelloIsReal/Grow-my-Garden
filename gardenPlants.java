@@ -60,8 +60,8 @@ public class gardenPlants
                         System.out.println("Which plot to place in?");
                         checkGarden();
                         System.out.println("X value first, Y value after (each value seperately))");
-                        int plotX = keyboard.nextInt();
-                        int plotY = keyboard.nextInt();
+                        int plotX = keyboard.nextInt()-1;
+                        int plotY = keyboard.nextInt()-1;
                         if(plots[plotX][plotY] == null){
                             plots[plotX][plotY] = newPlant; 
                             findingPlot=false;
@@ -114,7 +114,7 @@ public class gardenPlants
                     if(gold>=seedPrices[i]){
                         System.out.println("================================");
                         System.out.println("purchased a "+seeds[i]+" seed!");
-                        System.out.println("-"+(gold-seedPrices[i])+"g");
+                        System.out.println("-"+(seedPrices[i])+"g");
                         gold = gold - seedPrices[i];
                         inventory.add(seeds[i]);
                     } else {
@@ -144,8 +144,8 @@ public class gardenPlants
         checkGarden();
         System.out.print("which plant to harvest?");
         System.out.println("X value first, Y value after (each value seperately))");
-        int plotX = keyboard.nextInt();
-        int plotY = keyboard.nextInt();
+        int plotX = keyboard.nextInt()-1;
+        int plotY = keyboard.nextInt()-1;
         if(plots[plotX][plotY] != null){
             // Need to add checking for if the plant is fully grown.
             System.out.println(plots[plotX][plotY].getPlantType()+" Harvested!");
@@ -157,7 +157,7 @@ public class gardenPlants
     }
     private ArrayList<String> tempGrowthStages = new ArrayList<String>();
     public void checkGarden(){
-        tempGrowthStages.clear();
+        //tempGrowthStages.clear();
         for(int y=0; y<plots.length; y++){
             System.out.print("|");
             
@@ -166,13 +166,17 @@ public class gardenPlants
                     System.out.print("X|");
                 }else if(plots[x][y].getPlantType().equals("mango")){
                     System.out.print("M|");
-                    tempGrowthStages.add(plots[x][y].getPlantStage());
                 }else if(plots[x][y].getPlantType().equals("pepper")){
                     System.out.print("P|");
-                    tempGrowthStages.add(plots[x][y].getPlantStage());
+                }else if(plots[x][y].getPlantType().equals("strawberry")){
+                    System.out.print("S|");
+                }else if(plots[x][y].getPlantType().equals("tomato")){
+                    System.out.print("T|");
                 }else{
                     System.out.print("?|");
                 }
+
+                
                 
                 // if(this.plots[x][y] != null){
                 // System.out.print(plots[x][y].getPlantType()+"|");
@@ -181,12 +185,18 @@ public class gardenPlants
                 // }   
             }
             System.out.println("");
-        
-
         }
-        for(int i=0; i<tempGrowthStages.size(); i++){
-            System.out.println(tempGrowthStages.get(i));
+        System.out.println("\n\n");
+        for(int y=0; y<plots.length; y++){   
+            for(int x=0; x<plots.length; x++){
+                if(plots[x][y] != null){
+                    System.out.println(plots[x][y].getPlantStage());
+                }
+            }
         }
+        // for(int i=0; i<tempGrowthStages.size(); i++){
+        //     System.out.println(tempGrowthStages.get(i));
+        // }
 
     }
     
