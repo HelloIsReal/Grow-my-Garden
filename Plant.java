@@ -10,7 +10,8 @@ public class Plant
 {
     private String plantType;
     private double plantValue;
-    private int[] growthTime = {3,5,8,16};
+    // private int[] growthTime = {3,5,8,16};
+    private int[] growthTime = {1,2,3,4};
     private String[] growthStages = {"Sprouting","Ripening","Grown","Wilted"};
     private String plantState;
     // Frozen = 10x (Replaces wet if gotten, happens on freezing rainy days. 1/4 chance to replace rainy days)
@@ -29,6 +30,7 @@ public class Plant
         plantedTime = LocalDateTime.now();
         this.plantType = plantType;
         this.plantValue = plantValue;
+        this.plantState = growthStages[0];
     }
 
     public void setPlantType(String plantType){
@@ -55,7 +57,7 @@ public class Plant
         plantModifiers.add(modifier);
     }
 
-    public String getPlantStage(){
+    public String getPlantStage(){ // This returns the current plant stage
         return(plantType+" is "+plantState+"!");
     }
 
@@ -64,6 +66,7 @@ public class Plant
             System.out.println(plantModifiers.get(i));
         }
     }
+
     public void plantUpdate(){
         Duration duration = Duration.between(plantedTime,LocalDateTime.now());
 
@@ -71,6 +74,7 @@ public class Plant
         for(int i=0; i>growthStages.length; i++){
             if(duration.toMinutes()>growthTime[i]){
                 plantState = growthStages[i];
+                getPlantStage();
             }
         }
     }

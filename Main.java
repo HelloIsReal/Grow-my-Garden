@@ -15,7 +15,6 @@ public class Main
         boolean inGame=true;
         boolean debug=true;
 
-        
         gardenPlants Garden = new gardenPlants();
         Events events = new Events();
 
@@ -87,7 +86,7 @@ public class Main
                 case 5:
                     refreshScreen(REFRESHLENGTH);
                     Garden.printInventory();
-                    
+
                     break;
 
                 case 9:
@@ -98,6 +97,7 @@ public class Main
             }
         }
     }
+
     public static void refreshScreen(int length){
         for(int i=0; i<length; i++){
             System.out.println();

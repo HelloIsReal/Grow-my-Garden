@@ -9,7 +9,7 @@ import java.util.ArrayList;
 import java.util.Scanner;
 public class gardenPlants
 {
-    
+
     String[] seeds = {"strawberry", "tomato", "pepper", "mango"};
     int[] seedPrices = {5,10,15,50};
 
@@ -103,27 +103,32 @@ public class gardenPlants
         boolean validOption=false;
 
         while(!validOption){
-            System.out.println("Which plant would you like to buy?");
+            System.out.println("Which plant would you like to buy?  (type 'none' to exit)");
             for(int i=0; i<seeds.length; i++){
                 System.out.println(seeds[i]+" - "+seedPrices[i]+"g");
             }
             selectedSeed = keyboard.nextLine();
-            for(int i=0; i<seeds.length; i++){
-                if(seeds[i].equals(selectedSeed)){
-                    validOption=true;
-                    if(gold>=seedPrices[i]){
-                        System.out.println("================================");
-                        System.out.println("purchased a "+seeds[i]+" seed!");
-                        System.out.println("-"+(seedPrices[i])+"g");
-                        gold = gold - seedPrices[i];
-                        inventory.add(seeds[i]);
-                    } else {
-                        System.out.println("insufficient gold!");
+            if(selectedSeed.equals("none")){System.out.println("asd");}
+            if(selectedSeed.equals("none")){
+                validOption=true;
+            }else{
+                for(int i=0; i<seeds.length; i++){
+                    if(seeds[i].equals(selectedSeed)){
+                        validOption=true;
+                        if(gold>=seedPrices[i]){
+                            System.out.println("================================");
+                            System.out.println("purchased a "+seeds[i]+" seed!");
+                            System.out.println("-"+(seedPrices[i])+"g");
+                            gold = gold - seedPrices[i];
+                            inventory.add(seeds[i]);
+                        } else {
+                            System.out.println("insufficient gold!");
+                        }
                     }
                 }
-            }
-            if(!validOption){
-                System.out.println("Invalid input, please enter a valid seed!\n");
+                if(!validOption){
+                    System.out.println("Invalid input, please enter a valid seed!\n");
+                }
             }
         }
     }
@@ -158,9 +163,14 @@ public class gardenPlants
     private ArrayList<String> tempGrowthStages = new ArrayList<String>();
     public void checkGarden(){
         //tempGrowthStages.clear();
+        System.out.print("#");
+        for(int n=0; n<plots.length; n++){
+            System.out.print(" "+(n+1));
+        }
+        System.out.println();
         for(int y=0; y<plots.length; y++){
-            System.out.print("|");
-            
+            System.out.print(y+1+"|");
+
             for(int x=0; x<plots.length; x++){
                 if(plots[x][y] == null){
                     System.out.print("X|");
@@ -176,8 +186,6 @@ public class gardenPlants
                     System.out.print("?|");
                 }
 
-                
-                
                 // if(this.plots[x][y] != null){
                 // System.out.print(plots[x][y].getPlantType()+"|");
                 // } else {
@@ -199,5 +207,5 @@ public class gardenPlants
         // }
 
     }
-    
+
 }
