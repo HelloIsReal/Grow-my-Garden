@@ -12,7 +12,7 @@ public class Plant
     private double plantValue;
     // private int[] growthTime = {3,5,8,16};
     private int[] growthTime = {1,2,3,4};
-    private String[] growthStages = {"Sprouting","Ripening","Grown","Wilted"};
+    private String[] growthStages = {"Sprouting","Ripening","Mature","Wilted"};
     private String plantState;
     // Frozen = 10x (Replaces wet if gotten, happens on freezing rainy days. 1/4 chance to replace rainy days)
     // Wet = 2x (Happens during rainy days, common)
@@ -57,8 +57,10 @@ public class Plant
         plantModifiers.add(modifier);
     }
 
-    public String getPlantStage(){ // This returns the current plant stage
-        return(plantType+" is "+plantState+"!");
+    public void getPlantStage(){ // This returns the current plant stage
+        System.out.println("");        //return(plantType+" is "+plantState+"!");
+        //plantUpdate();
+        //System.out.println(plantType+" is "+plantState+"!");
     }
 
     public void getModifiers(){
@@ -71,10 +73,13 @@ public class Plant
         Duration duration = Duration.between(plantedTime,LocalDateTime.now());
 
         System.out.println(duration.toMinutes());
+        //getPlantStage();
+        //System.out.println(getPlantStage());
+        System.out.println(plantType+" is "+plantState+"!");
         for(int i=0; i>growthStages.length; i++){
             if(duration.toMinutes()>growthTime[i]){
                 plantState = growthStages[i];
-                getPlantStage();
+                //System.out.println(getPlantStage());
             }
         }
     }

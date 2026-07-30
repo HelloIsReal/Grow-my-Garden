@@ -194,11 +194,11 @@ public class gardenPlants
             }
             System.out.println("");
         }
-        System.out.println("\n\n");
+        System.out.println("\n");
         for(int y=0; y<plots.length; y++){   
             for(int x=0; x<plots.length; x++){
                 if(plots[x][y] != null){
-                    System.out.println(plots[x][y].getPlantStage());
+                    plots[x][y].plantUpdate();
                 }
             }
         }
