@@ -102,9 +102,6 @@ public class gardenPlants
     public void plantUpgrades(){
         System.out.println("Increase Prices, Cost: ");
     }
-    public void sellPlant(){
-
-    }
 
 
     public int getGold(){

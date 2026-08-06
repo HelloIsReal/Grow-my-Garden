@@ -27,10 +27,9 @@ public class Main
 
             System.out.println("1) View my Garden");
             System.out.println("2) Plant a new crop using seeds");
-            System.out.println("3) Harvest a plant from my garden");
+            System.out.println("3) Harvest and sell plant from my Garden");
             System.out.println("4) Purchase plant seeds");
             System.out.println("5) Garden upgrades");
-            System.out.println("6) Sell plants");
             System.out.println("7) View inventory");
             System.out.println("================================");
 
@@ -60,10 +59,6 @@ public class Main
                 case 5:
                     refreshScreen(REFRESHLENGTH);
                     Garden.plantUpgrades();
-                    break;
-                case 6:
-                    refreshScreen(REFRESHLENGTH);
-                    Garden.sellPlant();
                     break;
                 case 7:
                     refreshScreen(REFRESHLENGTH);
