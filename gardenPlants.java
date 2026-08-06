@@ -2,17 +2,15 @@ import java.util.ArrayList;
 
 /**
  * Write a description of class Garden here.
- *
- * @author Tishar Sreekantam
- * @version Version 1
  */
 import java.util.Scanner;
 public class gardenPlants
 {
 
-    String[] seeds = {"strawberry", "tomato", "pepper", "mango"};
-    int[] seedPrices = {5,10,15,50};
-    int sellPriceModifier=1;
+    String[] seeds = {"strawberry", "tomato", "pepper","carrot","mango"};
+    int[] seedPrices = {5,10,15,25,50};
+    float sellPriceMultiplier=1;
+    int sellPriceCost=40;
 
     int gold=100;
 
@@ -25,7 +23,7 @@ public class gardenPlants
         System.out.println("Which plants in your inventory do you want to place? (type 'none' to exit)");
         printInventory();
         String userInput = keyboard.nextLine().toLowerCase();
-        while(!inventory.contains(userInput) || userInput.equals("none")){
+        while(!inventory.contains(userInput) && !userInput.equals("none")){
             System.out.println("Invalid Option, please try again!");
             userInput = keyboard.nextLine();
         }
@@ -34,14 +32,23 @@ public class gardenPlants
             Plant newPlant = new Plant("none",0);
         
             for(int i=0; i<inventory.size(); i++){
-                // System.out.println(inventory.get(i));
-                // System.out.println("User input: "+userInput);
                 if (inventory.get(i).equals(userInput)){
                     System.out.println("found "+userInput);
                     // seedFound=true;
                     newPlant.setPlantType(inventory.get(i).toLowerCase());
                     inventory.remove(i);
-                    newPlant.setPlantValue(10);
+                    if(newPlant.getPlantType() == "strawberry"){
+                        newPlant.setPlantValue(20);
+                    }else if(newPlant.getPlantType() == "tomato"){
+                        newPlant.setPlantValue(25);
+                    }else if(newPlant.getPlantType() == "pepper"){
+                        newPlant.setPlantValue(40);
+                    }else if(newPlant.getPlantType() == "carrot"){
+                        newPlant.setPlantValue(60);
+                    }else if(newPlant.getPlantType() == "mango"){
+                        newPlant.setPlantValue(125);
+                    }
+                    
 
                     boolean findingPlot=true;
                     while(findingPlot){
@@ -110,7 +117,7 @@ public class gardenPlants
         }
     }
     public void plantUpgrades(){
-        System.out.println("Increase Prices, Cost: ");
+        System.out.println("Increase Prices, Cost: "+sellPriceCost);
     }
 
 
@@ -130,8 +137,17 @@ public class gardenPlants
         checkGarden();
         System.out.print("which plant to harvest?");
         System.out.println("X value first, Y value after (each value seperately))");
+        while(!keyboard.hasNextInt()){
+            System.out.println("Invalid input");
+            keyboard.nextLine();
+        }
         int plotX = keyboard.nextInt()-1;
+        while(!keyboard.hasNextInt()){
+            System.out.println("Invalid input");
+            keyboard.nextLine();
+        }
         int plotY = keyboard.nextInt()-1;
+        keyboard.nextLine();
         if(plots[plotX][plotY] != null){
             // Need to add checking for if the plant is fully grown.
             if(plots[plotX][plotY].getPlantState()>=3){
@@ -139,7 +155,10 @@ public class gardenPlants
 
                 }
                 System.out.println(plots[plotX][plotY].getPlantType()+" Harvested!");
+                gold += plots[plotX][plotY].getPlantValue() * sellPriceMultiplier;
                 plots[plotX][plotY] = null;
+            }else{
+                System.out.println(plots[plotX][plotY].getPlantType()+" is not yet mature!");
             }
         } else {
             System.out.println("This plot is already empty!");
@@ -166,8 +185,10 @@ public class gardenPlants
                     System.out.print("S|");
                 }else if(plots[x][y].getPlantType().equals("tomato")){
                     System.out.print("T|");
+                }else if(plots[x][y].getPlantType().equals("carrot")){
+                    System.out.print("C|");
                 }else{
-                    System.out.print("?|"); // Appears if the plant is a mystery type
+                    System.out.print("?|"); // Appears if the plant doesn't exist.
                 }
             }
             System.out.println("");

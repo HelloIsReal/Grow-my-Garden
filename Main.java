@@ -1,6 +1,7 @@
 
+import java.time.*;
 /**
- * Write a description of class Main here.
+ * 
  *
  * Tishar Sreekantam
  * Version 1
@@ -30,15 +31,24 @@ public class Main
             System.out.println("3) Harvest and sell plant from my Garden");
             System.out.println("4) Purchase plant seeds");
             System.out.println("5) Garden upgrades");
-            System.out.println("7) View inventory");
+            System.out.println("6) View inventory");
+            System.out.println("7) Check the forecast");
             System.out.println("================================");
-
+            String currentEvent = events.startEvent();
+            if(currentEvent!=""){
+                System.out.println("The weather is currently "+currentEvent+"!");
+            }else{
+                System.out.println("The weather seems clear and sunny, for now.");
+            }
+            
+            
             while(!keyboard.hasNextInt()){
                 System.out.println("Invalid input, please enter the number of an option\n");
                 keyboard.next();
             }
             int userOption = keyboard.nextInt();
             keyboard.nextLine();
+
             switch (userOption){
                 case 1:
                     refreshScreen(REFRESHLENGTH);
@@ -60,9 +70,13 @@ public class Main
                     refreshScreen(REFRESHLENGTH);
                     Garden.plantUpgrades();
                     break;
-                case 7:
+                case 6:
                     refreshScreen(REFRESHLENGTH);
                     Garden.printInventory();
+                    break;
+                case 7:
+                    refreshScreen(REFRESHLENGTH);
+                    events.forecastCheck();
                     break;
 
                 case 9:
