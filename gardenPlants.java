@@ -25,17 +25,17 @@ public class gardenPlants
         System.out.println("Which plants in your inventory do you want to place? (type 'none' to exit)");
         printInventory();
         String userInput = keyboard.nextLine().toLowerCase();
-        while(!inventory.contains(userInput) || userInput == "none"){
+        while(!inventory.contains(userInput) || userInput.equals("none")){
             System.out.println("Invalid Option, please try again!");
             userInput = keyboard.nextLine();
         }
 
-        if(userInput !="none"){
+        if(!userInput.equals("none")){
             Plant newPlant = new Plant("none",0);
         
             for(int i=0; i<inventory.size(); i++){
-                System.out.println(inventory.get(i));
-                System.out.println("User input: "+userInput);
+                // System.out.println(inventory.get(i));
+                // System.out.println("User input: "+userInput);
                 if (inventory.get(i).equals(userInput)){
                     System.out.println("found "+userInput);
                     // seedFound=true;
@@ -48,8 +48,19 @@ public class gardenPlants
                         System.out.println("Which plot to place in?");
                         checkGarden();
                         System.out.println("X value first, Y value after (each value seperately))");
+                        while(!keyboard.hasNextInt()){
+                            System.out.println("Invalid input");
+                            keyboard.nextLine();
+                        }
                         int plotX = keyboard.nextInt()-1;
+                        while(!keyboard.hasNextInt()){
+                            System.out.println("Invalid input");
+                            keyboard.nextLine();
+                        }
                         int plotY = keyboard.nextInt()-1;
+                        if(plotX>=3 || plotY>=3){
+                            System.out.println("Invalid plot point(s)!");
+                        }else{
                         if(plots[plotX][plotY] == null){
                             plots[plotX][plotY] = newPlant; 
                             findingPlot=false;
@@ -57,7 +68,7 @@ public class gardenPlants
                             System.out.println("That plot already has a plant in it!");
                         }
                     }
-
+                    }
                 }
             }
         }
@@ -75,7 +86,6 @@ public class gardenPlants
                 System.out.println(seeds[i]+" - "+seedPrices[i]+"g");
             }
             selectedSeed = keyboard.nextLine();
-            if(selectedSeed.equals("none")){System.out.println("asd");}
             if(selectedSeed.equals("none")){
                 validOption=true;
             }else{
@@ -124,16 +134,19 @@ public class gardenPlants
         int plotY = keyboard.nextInt()-1;
         if(plots[plotX][plotY] != null){
             // Need to add checking for if the plant is fully grown.
-            System.out.println(plots[plotX][plotY].getPlantType()+" Harvested!");
-            plots[plotX][plotY] = null;
+            if(plots[plotX][plotY].getPlantState()>=3){
+                if(plots[plotX][plotY].getPlantType().equals("mango")){
+
+                }
+                System.out.println(plots[plotX][plotY].getPlantType()+" Harvested!");
+                plots[plotX][plotY] = null;
+            }
         } else {
             System.out.println("This plot is already empty!");
         }
 
     }
-    private ArrayList<String> tempGrowthStages = new ArrayList<String>();
     public void checkGarden(){
-        //tempGrowthStages.clear();
         System.out.print("#");
         for(int n=0; n<plots.length; n++){
             System.out.print(" "+(n+1));
@@ -154,12 +167,12 @@ public class gardenPlants
                 }else if(plots[x][y].getPlantType().equals("tomato")){
                     System.out.print("T|");
                 }else{
-                    System.out.print("?|");
+                    System.out.print("?|"); // Appears if the plant is a mystery type
                 }
             }
             System.out.println("");
         }
-        System.out.println("\n");
+        System.out.println("\nX = empty plot\n");
         for(int y=0; y<plots.length; y++){   
             for(int x=0; x<plots.length; x++){
                 if(plots[x][y] != null){

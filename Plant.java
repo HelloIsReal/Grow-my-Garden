@@ -10,10 +10,12 @@ public class Plant
 {
     private String plantType;
     private double plantValue;
-    // private int[] growthTime = {3,5,8,16};
-    private int[] growthTime = {1,2,3,4};
-    private String[] growthStages = {"Sprouting","Ripening","Mature","Wilted"};
+    
+    private int currentState=0;
+    private int[] growthTime = {1,2,3,5,15};
+    private String[] growthStages = {"Seedling","Sprouting","Ripening","Mature","Wilted"};
     private String plantState;
+    
     // Frozen = 10x (Replaces wet if gotten, happens on freezing rainy days. 1/4 chance to replace rainy days)
     // Wet = 2x (Happens during rainy days, common)
     // Electrified = 3x (Happens during thunderstorms.)
@@ -57,30 +59,40 @@ public class Plant
         plantModifiers.add(modifier);
     }
 
-    public void getPlantStage(){ // This returns the current plant stage
-        System.out.println("");        //return(plantType+" is "+plantState+"!");
-        //plantUpdate();
-        //System.out.println(plantType+" is "+plantState+"!");
-    }
-
     public void getModifiers(){
         for(int i=0; i<plantModifiers.size(); i++){
             System.out.println(plantModifiers.get(i));
         }
     }
+    public int getPlantState(){
+        return(currentState);
+    }
 
     public void plantUpdate(){
         Duration duration = Duration.between(plantedTime,LocalDateTime.now());
 
-        System.out.println(duration.toMinutes());
+        System.out.print(duration.toMinutes()+" minutes old, ");
         //getPlantStage();
         //System.out.println(getPlantStage());
-        System.out.println(plantType+" is "+plantState+"!");
-        for(int i=0; i>growthStages.length; i++){
-            if(duration.toMinutes()>growthTime[i]){
-                plantState = growthStages[i];
-                //System.out.println(getPlantStage());
-            }
+        if(duration.toMinutes()>=growthTime[currentState] && currentState<=growthStages.length){
+            currentState++;
+            //plantState = growthStages[currentState];
         }
+        System.out.println(plantType+" is "+growthStages[currentState-1]+"!");
+        if(currentState>=4){
+            System.out.println("This plant is also ready to be harvested!\n");
+        }
+        // for(int i=currentState; duration.toMinutes()>=growthTime[i]; currentState++){
+        //     System.out.println("New plant state!!");
+        //     plantState = growthStages[i];
+
+        // }
+
+        // for(int i=0; i>growthStages.length; i++){
+        //     if(duration.toMinutes()>growthTime[i]){
+        //         plantState = growthStages[i];
+        //         //System.out.println(getPlantStage());
+        //     }
+        // }
     }
 }
