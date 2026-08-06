@@ -19,9 +19,9 @@ public class gardenPlants
     private ArrayList<String> inventory = new ArrayList<String>();
     Plant[][] plots = new Plant[3][3]; 
 
-    public gardenPlants(){
-        System.out.println("garden created!");
-    }
+    // public gardenPlants(){
+    //     System.out.println("garden created!");
+    // }
 
     public void newPlant(){
         Scanner keyboard = new Scanner(System.in);

@@ -8,9 +8,9 @@
 public class Events
 {
 
-    public Events(){
-      System.out.println("events created!");
-    }
+    // public Events(){
+    //   System.out.println("events created!");
+    // }
     public String startEvent(){
     int rng = (int)(Math.random() * 301);
     String event="";
