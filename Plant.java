@@ -10,7 +10,7 @@ public class Plant
     private float plantValue;
     
     private int currentState=0;
-    private int[] growthTime = {1,2,3,5,15};
+    private int[] growthTime = {2,3,5,15,60};
     private String[] growthStages = {"Seedling","Sprouting","Ripening","Mature","Wilted"};
     //private String plantState;
     
