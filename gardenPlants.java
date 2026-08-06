@@ -12,16 +12,12 @@ public class gardenPlants
 
     String[] seeds = {"strawberry", "tomato", "pepper", "mango"};
     int[] seedPrices = {5,10,15,50};
+    int sellPriceModifier=1;
 
     int gold=100;
 
-    //private ArrayList<Plant> gardenPlants = new ArrayList<Plant>();
     private ArrayList<String> inventory = new ArrayList<String>();
     Plant[][] plots = new Plant[3][3]; 
-
-    // public gardenPlants(){
-    //     System.out.println("garden created!");
-    // }
 
     public void newPlant(){
         Scanner keyboard = new Scanner(System.in);
@@ -36,15 +32,7 @@ public class gardenPlants
 
         if(userInput !="none"){
             Plant newPlant = new Plant("none",0);
-            // boolean seedFound=false;
-            // boolean noSeed=false;
-            // while(seedFound=false){
-
-            // }
-            // while(seedFound=false && noSeed==false){
-            //     count++;
-            //System.out.println("User input: "+userInput);
-            //System.out.println(inventory.size());
+        
             for(int i=0; i<inventory.size(); i++){
                 System.out.println(inventory.get(i));
                 System.out.println("User input: "+userInput);
@@ -73,31 +61,10 @@ public class gardenPlants
                 }
             }
         }
-
-        // Plant newPlant = new Plant("none",0);
-        // System.out.println("What type of plant?");
-        // newPlant.setPlantType(keyboard.nextLine().toLowerCase());
-        // //String plantType = keyboard.nextLine();
-
-        // System.out.println("Plant value?");
-        // newPlant.setPlantValue(keyboard.nextInt());
-        // //double plantValue = keyboard.nextDouble();
-
-        // System.out.println("Which plot to place in?");
-        // checkGarden();
-        // System.out.println("X value first, Y value after (each value seperately))");
-        // int plotX = keyboard.nextInt();
-        // int plotY = keyboard.nextInt();
-        // if(plots[plotX][plotY] == null){
-        // plots[plotX][plotY] = newPlant; 
-        // } else {
-        //     System.out.println("That plot already has a plant in it!");
-        // }
     }
 
     public void buyPlant(){
         Scanner keyboard = new Scanner(System.in);
-        //List plants
 
         String selectedSeed = "none";
         boolean validOption=false;
@@ -136,7 +103,7 @@ public class gardenPlants
         System.out.println("Increase Prices, Cost: ");
     }
     public void sellPlant(){
-        
+
     }
 
 
@@ -203,10 +170,6 @@ public class gardenPlants
                 }
             }
         }
-        // for(int i=0; i<tempGrowthStages.size(); i++){
-        //     System.out.println(tempGrowthStages.get(i));
-        // }
-
     }
 
 }

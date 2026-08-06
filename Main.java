@@ -11,39 +11,11 @@ public class Main
     public static void main(String args[]){
         Scanner keyboard = new Scanner(System.in);
         final int REFRESHLENGTH = 100;
-        boolean menu=true;
         boolean inGame=true;
-        boolean debug=true;
 
         gardenPlants Garden = new gardenPlants();
         Events events = new Events();
 
-        // System.out.println("Welcome to 'Grow my garden'! \n");
-        // while(menu){
-        //     System.out.println("\n#) Load Save (W.I.P)");
-        //     System.out.println("1) New Save");
-        //     System.out.println("2) Settings");
-
-        //     while(!keyboard.hasNextInt()){
-        //         System.out.println("Invalid input, please enter the number of an option");
-        //         keyboard.next();
-        //     }
-
-        //     int userOption = keyboard.nextInt();
-        //     keyboard.nextLine();
-        //     switch (userOption){
-        //         case 1:
-        //             System.out.println("Starting new save!");
-        //             // Insert function code here to create a new save file.
-        //             menu=false;
-        //             break;
-        //         case 2:
-        //             System.out.println("No settings available yet");
-        //             break;
-        //         default:
-        //             System.out.println("Invalid option. Try again");
-        //     }
-        // }
         System.out.println("\n================================");
         System.out.println("Welcome to Grow my Garden!");
 
