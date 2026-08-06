@@ -2,5 +2,9 @@
 comment0.target=Events
 comment0.text=\r\n\ Write\ a\ description\ of\ class\ Garden\ here.\r\n
 comment1.params=
-comment1.target=java.lang.String\ startEvent()
-numComments=2
+comment1.target=Events()
+comment2.params=
+comment2.target=java.lang.String\ startEvent()
+comment3.params=
+comment3.target=void\ forecastCheck()
+numComments=4

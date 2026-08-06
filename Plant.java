@@ -7,7 +7,7 @@ import java.util.ArrayList;
 public class Plant
 {
     private String plantType;
-    private float plantValue;
+    private double plantValue;
     
     private int currentState=0;
     private int[] growthTime = {2,3,5,15,60};
@@ -21,12 +21,13 @@ public class Plant
     // Eclipsed = 20x (happens during solar eclipses)
     // Sandy = 3x (gotten during sandstorms)
 
-    private ArrayList<String> plantModifiers = new ArrayList<String>();
+    private String plantModifier;
+    private int plantMultiplier;
 
     // used for checking when the plant was planted, and when it's grown.
     private LocalDateTime plantedTime;
 
-    public Plant(String plantType, float plantValue){
+    public Plant(String plantType, double plantValue){
         plantedTime = LocalDateTime.now();
         this.plantType = plantType;
         this.plantValue = plantValue;
@@ -37,7 +38,7 @@ public class Plant
         this.plantType = plantType;
     }
 
-    public void setPlantValue(float plantValue){
+    public void setPlantValue(double plantValue){
         this.plantValue = plantValue;
     }
 
@@ -53,15 +54,20 @@ public class Plant
         return(this.plantValue);
     }
 
-    public void addModifier(String modifier){
-        plantModifiers.add(modifier);
+    public void setModifier(String modifier){
+        this.plantModifier = modifier;
     }
 
-    public void getModifiers(){
-        for(int i=0; i<plantModifiers.size(); i++){
-            System.out.println(plantModifiers.get(i));
-        }
+    public String getModifiers(){
+        return(this.plantModifier);
     }
+    public int plantMultiplier(){
+        return(this.plantMultiplier);
+    }
+    public void setPlantMultiplier(int newMult){
+        this.plantMultiplier = newMult;
+    }
+
     public int getPlantState(){
         return(currentState);
     }

@@ -9,10 +9,10 @@ public class gardenPlants
 
     String[] seeds = {"strawberry", "tomato", "pepper","carrot","mango"};
     int[] seedPrices = {5,10,15,25,50};
-    float sellPriceMultiplier=1;
-    int sellPriceCost=40;
+    double sellPriceMultiplier=1;
+    double sellPriceCost=40;
 
-    int gold=100;
+    double gold=100;
 
     private ArrayList<String> inventory = new ArrayList<String>();
     Plant[][] plots = new Plant[3][3]; 
@@ -117,11 +117,41 @@ public class gardenPlants
         }
     }
     public void plantUpgrades(){
-        System.out.println("Increase Prices, Cost: "+sellPriceCost);
+        Scanner keyboard = new Scanner(System.in);
+        System.out.println("1) Increase Prices, Cost: "+sellPriceCost);
+        while(!keyboard.hasNextInt()){
+            System.out.println("Invalid input");
+            keyboard.nextLine();
+        }
+        int userOption = keyboard.nextInt();
+
+        if(userOption==1){
+            if(gold>=sellPriceCost){
+                gold -= sellPriceCost;
+                sellPriceMultiplier = sellPriceMultiplier * 1.3;
+                sellPriceCost = sellPriceCost*1.5;
+                System.out.println("Increased plant sell price! ("+sellPriceMultiplier+"x Mult)");
+            }
+        }else{
+            System.out.println("Invalid option");
+        }
+    }
+
+    public void modifierTick(String newEvent){
+        for(int y=0; y<plots.length; y++){
+            for(int x=0; x<plots.length; x++){
+                
+                plots[x][y].setModifier(newEvent);
+
+                System.out.println(plots[x][y].getPlantType()+" has gotten the modifier "+newEvent+"!");
+                
+            }
+        }
     }
 
 
-    public int getGold(){
+
+    public double getGold(){
         return(this.gold);
     }
 

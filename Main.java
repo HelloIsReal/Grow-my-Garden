@@ -37,6 +37,7 @@ public class Main
             String currentEvent = events.startEvent();
             if(currentEvent!=""){
                 System.out.println("The weather is currently "+currentEvent+"!");
+                Garden.modifierTick(currentEvent);
             }else{
                 System.out.println("The weather seems clear and sunny, for now.");
             }
@@ -79,9 +80,9 @@ public class Main
                     events.forecastCheck();
                     break;
 
-                case 9:
-                    System.out.println(events.startEvent());
-                    break;
+                // case 9:
+                //     System.out.println(events.startEvent());
+                //     break;
                 default:
                     System.out.println("Invalid option. Try again\n");
             }
