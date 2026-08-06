@@ -18,32 +18,32 @@ public class Main
         gardenPlants Garden = new gardenPlants();
         Events events = new Events();
 
-        System.out.println("Welcome to 'Grow my garden'! \n");
-        while(menu){
-            System.out.println("\n#) Load Save (W.I.P)");
-            System.out.println("1) New Save");
-            System.out.println("2) Settings");
+        // System.out.println("Welcome to 'Grow my garden'! \n");
+        // while(menu){
+        //     System.out.println("\n#) Load Save (W.I.P)");
+        //     System.out.println("1) New Save");
+        //     System.out.println("2) Settings");
 
-            while(!keyboard.hasNextInt()){
-                System.out.println("Invalid input, please enter the number of an option");
-                keyboard.next();
-            }
+        //     while(!keyboard.hasNextInt()){
+        //         System.out.println("Invalid input, please enter the number of an option");
+        //         keyboard.next();
+        //     }
 
-            int userOption = keyboard.nextInt();
-            keyboard.nextLine();
-            switch (userOption){
-                case 1:
-                    System.out.println("Starting new save!");
-                    // Insert function code here to create a new save file.
-                    menu=false;
-                    break;
-                case 2:
-                    System.out.println("No settings available yet");
-                    break;
-                default:
-                    System.out.println("Invalid option. Try again");
-            }
-        }
+        //     int userOption = keyboard.nextInt();
+        //     keyboard.nextLine();
+        //     switch (userOption){
+        //         case 1:
+        //             System.out.println("Starting new save!");
+        //             // Insert function code here to create a new save file.
+        //             menu=false;
+        //             break;
+        //         case 2:
+        //             System.out.println("No settings available yet");
+        //             break;
+        //         default:
+        //             System.out.println("Invalid option. Try again");
+        //     }
+        // }
         System.out.println("\n================================");
         System.out.println("Welcome to Grow my Garden!");
 
@@ -53,11 +53,13 @@ public class Main
             System.out.println("You currently have "+Garden.getGold()+"g");
             System.out.println("================================");
 
-            System.out.println("1) Go to my Garden");
-            System.out.println("2) Purchase plant seeds");
-            System.out.println("3) Plant a new crop using seeds");
-            System.out.println("4) Harvest a plant from my garden");
-            System.out.println("5) View inventory");
+            System.out.println("1) View my Garden");
+            System.out.println("2) Plant a new crop using seeds");
+            System.out.println("3) Harvest a plant from my garden");
+            System.out.println("4) Purchase plant seeds");
+            System.out.println("5) Garden upgrades");
+            System.out.println("6) Sell plants");
+            System.out.println("7) View inventory");
             System.out.println("================================");
 
             while(!keyboard.hasNextInt()){
@@ -73,20 +75,27 @@ public class Main
                     break;
                 case 2:
                     refreshScreen(REFRESHLENGTH);
-                    Garden.buyPlant();
+                    Garden.newPlant();
                     break;
                 case 3:
                     refreshScreen(REFRESHLENGTH);
-                    Garden.newPlant();
+                    Garden.harvestPlant();
                     break;
                 case 4:
                     refreshScreen(REFRESHLENGTH);
-                    Garden.harvestPlant();
+                    Garden.buyPlant();
                     break;
                 case 5:
                     refreshScreen(REFRESHLENGTH);
+                    Garden.plantUpgrades();
+                    break;
+                case 6:
+                    refreshScreen(REFRESHLENGTH);
+                    Garden.sellPlant();
+                    break;
+                case 7:
+                    refreshScreen(REFRESHLENGTH);
                     Garden.printInventory();
-
                     break;
 
                 case 9:

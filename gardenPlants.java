@@ -132,6 +132,13 @@ public class gardenPlants
             }
         }
     }
+    public void plantUpgrades(){
+        System.out.println("Increase Prices, Cost: ");
+    }
+    public void sellPlant(){
+        
+    }
+
 
     public int getGold(){
         return(this.gold);
@@ -185,12 +192,6 @@ public class gardenPlants
                 }else{
                     System.out.print("?|");
                 }
-
-                // if(this.plots[x][y] != null){
-                // System.out.print(plots[x][y].getPlantType()+"|");
-                // } else {
-                // System.out.print("None|");
-                // }   
             }
             System.out.println("");
         }
