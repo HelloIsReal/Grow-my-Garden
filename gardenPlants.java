@@ -129,7 +129,7 @@ public class gardenPlants
             if(gold>=sellPriceCost){
                 gold -= sellPriceCost;
                 sellPriceMultiplier = sellPriceMultiplier * 1.3;
-                sellPriceCost = sellPriceCost*1.5;
+                sellPriceCost = sellPriceCost*1.6;
                 System.out.println("Increased plant sell price! ("+sellPriceMultiplier+"x Mult)");
             }
         }else{
@@ -146,38 +146,34 @@ public class gardenPlants
                 // Gold = 20x (happens during rare golden days. Basically a day where stuff has a chance to become golden)
                 // Eclipsed = 20x (happens during solar eclipses)
                 // Sandy = 3x (gotten during sandstorms)
-                if(newEvent=="wet"){
-                    if(plots[x][y].getMultiplier()<2){
-                        plots[x][y].setMultiplier(2);
+                if(plots[x][y] != null){
+                    if(newEvent=="wet"){
+                        if(plots[x][y].getMultiplier()<2){
+                            plots[x][y].setMultiplier(2);
+                        }
+                    }else if(newEvent=="frozen"){
+                        if(plots[x][y].getMultiplier()<5){
+                            plots[x][y].setMultiplier(5);
+                        }
+                    }else if(newEvent=="golden"){
+                        if(plots[x][y].getMultiplier()<20){
+                            plots[x][y].setMultiplier(20);
+                        }
+                    }else if(newEvent=="eclipse"){
+                        if(plots[x][y].getMultiplier()<20){
+                            plots[x][y].setMultiplier(20);
+                        }
+                    }else if(newEvent=="sandy"){
+                        if(plots[x][y].getMultiplier()<3){
+                            plots[x][y].setMultiplier(3);
+                        }
+                    }else if(newEvent=="electrified"){
+                        if(plots[x][y].getMultiplier()<4){
+                            plots[x][y].setMultiplier(4);
+                        }
                     }
-                }else if(newEvent=="frozen"){
-                    if(plots[x][y].getMultiplier()<5){
-                        plots[x][y].setMultiplier(5);
-                    }
-                }else if(newEvent=="golden"){
-                    if(plots[x][y].getMultiplier()<20){
-                        plots[x][y].setMultiplier(20);
-                    }
-                }else if(newEvent=="eclipse"){
-                    if(plots[x][y].getMultiplier()<20){
-                        plots[x][y].setMultiplier(20);
-                    }
-                }else if(newEvent=="sandy"){
-                    if(plots[x][y].getMultiplier()<3){
-                        plots[x][y].setMultiplier(3);
-                    }
-                }else if(newEvent=="electrified"){
-                    if(plots[x][y].getMultiplier()<4){
-                        plots[x][y].setMultiplier(4);
-                    }
+                    System.out.println(plots[x][y].getPlantType()+" has gotten the modifier "+newEvent+"!");
                 }
-
-                if(newMult>plots[x][y].getMultiplier()){
-                    plots[x][y].setModifier(newEvent);
-                    plots[x][y].setMultiplier(newMult);
-                }
-
-                System.out.println(plots[x][y].getPlantType()+" has gotten the modifier "+newEvent+"!");
                 
             }
         }
