@@ -140,8 +140,42 @@ public class gardenPlants
     public void modifierTick(String newEvent){
         for(int y=0; y<plots.length; y++){
             for(int x=0; x<plots.length; x++){
-                
-                plots[x][y].setModifier(newEvent);
+                // Frozen = 5x (Replaces wet if gotten, happens on freezing rainy days. 1/4 chance to replace rainy days)
+                // Wet = 2x (Happens during rainy days, common)
+                // Electrified = 4x (Happens during thunderstorms.)
+                // Gold = 20x (happens during rare golden days. Basically a day where stuff has a chance to become golden)
+                // Eclipsed = 20x (happens during solar eclipses)
+                // Sandy = 3x (gotten during sandstorms)
+                if(newEvent=="wet"){
+                    if(plots[x][y].getMultiplier()<2){
+                        plots[x][y].setMultiplier(2);
+                    }
+                }else if(newEvent=="frozen"){
+                    if(plots[x][y].getMultiplier()<5){
+                        plots[x][y].setMultiplier(5);
+                    }
+                }else if(newEvent=="golden"){
+                    if(plots[x][y].getMultiplier()<20){
+                        plots[x][y].setMultiplier(20);
+                    }
+                }else if(newEvent=="eclipse"){
+                    if(plots[x][y].getMultiplier()<20){
+                        plots[x][y].setMultiplier(20);
+                    }
+                }else if(newEvent=="sandy"){
+                    if(plots[x][y].getMultiplier()<3){
+                        plots[x][y].setMultiplier(3);
+                    }
+                }else if(newEvent=="electrified"){
+                    if(plots[x][y].getMultiplier()<4){
+                        plots[x][y].setMultiplier(4);
+                    }
+                }
+
+                if(newMult>plots[x][y].getMultiplier()){
+                    plots[x][y].setModifier(newEvent);
+                    plots[x][y].setMultiplier(newMult);
+                }
 
                 System.out.println(plots[x][y].getPlantType()+" has gotten the modifier "+newEvent+"!");
                 

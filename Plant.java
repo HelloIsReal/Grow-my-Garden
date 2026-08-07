@@ -61,10 +61,10 @@ public class Plant
     public String getModifiers(){
         return(this.plantModifier);
     }
-    public int plantMultiplier(){
+    public int getMultiplier(){
         return(this.plantMultiplier);
     }
-    public void setPlantMultiplier(int newMult){
+    public void setMultiplier(int newMult){
         this.plantMultiplier = newMult;
     }
 

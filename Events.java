@@ -16,14 +16,14 @@ public class Events
     public String startEvent(){
         int rng = (int)(Math.random() * 301);
         String event="";
-        
+    
         
 
         if(Duration.between(eventTimer,LocalDateTime.now()).toMinutes() > weatherDelay){
             eventTimer=LocalDateTime.now();
         // Frozen = 5x (Replaces wet if gotten, happens on freezing rainy days. 1/4 chance to replace rainy days)
         // Wet = 2x (Happens during rainy days, common)
-        // Electrified = 3x (Happens during thunderstorms.)
+        // Electrified = 4x (Happens during thunderstorms.)
         // Gold = 20x (happens during rare golden days. Basically a day where stuff has a chance to become golden)
         // Eclipsed = 20x (happens during solar eclipses)
         // Sandy = 3x (gotten during sandstorms)
