@@ -14,7 +14,7 @@ public class Events
     }
 
     public String startEvent(){
-        int rng = (int)(Math.random() * 301);
+        int rng = (int)(Math.random() * 301); //rng chances
         String event="";
     
         
@@ -27,7 +27,8 @@ public class Events
         // Gold = 20x (happens during rare golden days. Basically a day where stuff has a chance to become golden)
         // Eclipsed = 20x (happens during solar eclipses)
         // Sandy = 3x (gotten during sandstorms)
-        if (rng == 1){
+
+        if (rng == 1){ // This is the rng that randomly picks which weather event is going to happen.
             event="golden"; // the whole sky is gold.
         } else if (rng>=2 && rng<=10){
             event="eclipse"; // eclipse event, the sun is blocked by the moon

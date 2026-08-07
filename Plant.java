@@ -6,6 +6,8 @@ import java.util.ArrayList;
  */
 public class Plant
 {
+
+    // the plant type, plant value, growth stage, time to grow to each stage, and the stages.
     private String plantType;
     private double plantValue;
     
@@ -72,7 +74,7 @@ public class Plant
         return(currentState);
     }
 
-    public void plantUpdate(){
+    public void plantUpdate(){ // This shows how old the plant is, and it's current growth stage to the user.
         Duration duration = Duration.between(plantedTime,LocalDateTime.now());
 
         System.out.print(duration.toMinutes()+" minutes old, ");

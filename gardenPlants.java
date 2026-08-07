@@ -7,19 +7,25 @@ import java.util.Scanner;
 public class gardenPlants
 {
 
+    // All the seeds in the game, seed cost in shop
     String[] seeds = {"strawberry", "tomato", "pepper","carrot","mango"};
     int[] seedPrices = {5,10,15,25,50};
+
+    // Multiplier for selling seeds, as well as multiplier cost in shop
     double sellPriceMultiplier=1;
     double sellPriceCost=40;
 
-    double gold=100;
+    double gold=100; // user gold.
 
-    private ArrayList<String> inventory = new ArrayList<String>();
-    Plant[][] plots = new Plant[3][3]; 
 
-    public void newPlant(){
+    private ArrayList<String> inventory = new ArrayList<String>(); // inventory for holding seeds
+    Plant[][] plots = new Plant[3][3]; // Plots to hold the user plants.
+
+    public void newPlant(){ // This function allows the user to plant in their garden
         Scanner keyboard = new Scanner(System.in);
 
+
+        // prints out their garden, then asks the user which plant they want to place from their inventory
         System.out.println("Which plants in your inventory do you want to place? (type 'none' to exit)");
         printInventory();
         String userInput = keyboard.nextLine().toLowerCase();
@@ -28,10 +34,10 @@ public class gardenPlants
             userInput = keyboard.nextLine();
         }
 
-        if(!userInput.equals("none")){
+        if(!userInput.equals("none")){ // if none, then close this menu
             Plant newPlant = new Plant("none",0);
         
-            for(int i=0; i<inventory.size(); i++){
+            for(int i=0; i<inventory.size(); i++){ // checks if the user has this plant in their inventory. Sets plant value
                 if (inventory.get(i).equals(userInput)){
                     System.out.println("found "+userInput);
                     // seedFound=true;
@@ -50,6 +56,7 @@ public class gardenPlants
                     }
                     
 
+                    // Asks the user which empty plot they would like to plant in.
                     boolean findingPlot=true;
                     while(findingPlot){
                         System.out.println("Which plot to place in?");
@@ -81,13 +88,13 @@ public class gardenPlants
         }
     }
 
-    public void buyPlant(){
+    public void buyPlant(){ // This function allows the user to buy seeds to plant
         Scanner keyboard = new Scanner(System.in);
 
         String selectedSeed = "none";
         boolean validOption=false;
 
-        while(!validOption){
+        while(!validOption){ // asks the user which plant they would like to purchase, or exit menu
             System.out.println("Which plant would you like to buy?  (type 'none' to exit)");
             for(int i=0; i<seeds.length; i++){
                 System.out.println(seeds[i]+" - "+seedPrices[i]+"g");
@@ -96,7 +103,7 @@ public class gardenPlants
             if(selectedSeed.equals("none")){
                 validOption=true;
             }else{
-                for(int i=0; i<seeds.length; i++){
+                for(int i=0; i<seeds.length; i++){ // checks if the user has enough gold, if so adds to inventory
                     if(seeds[i].equals(selectedSeed)){
                         validOption=true;
                         if(gold>=seedPrices[i]){
@@ -116,9 +123,9 @@ public class gardenPlants
             }
         }
     }
-    public void plantUpgrades(){
+    public void plantUpgrades(){ // This function allows the user to buy upgrades for their garden
         Scanner keyboard = new Scanner(System.in);
-        System.out.println("1) Increase Prices, Cost: "+sellPriceCost);
+        System.out.println("1) Increase Prices, Cost: "+sellPriceCost); // increase money gained from selling plants
         while(!keyboard.hasNextInt()){
             System.out.println("Invalid input");
             keyboard.nextLine();
@@ -137,8 +144,8 @@ public class gardenPlants
         }
     }
 
-    public void modifierTick(String newEvent){
-        for(int y=0; y<plots.length; y++){
+    public void modifierTick(String newEvent){ // Runs everytime the player returns to main options.
+        for(int y=0; y<plots.length; y++){ // This works after 5 minutes of the weather delay
             for(int x=0; x<plots.length; x++){
                 // Frozen = 5x (Replaces wet if gotten, happens on freezing rainy days. 1/4 chance to replace rainy days)
                 // Wet = 2x (Happens during rainy days, common)
@@ -185,14 +192,14 @@ public class gardenPlants
         return(this.gold);
     }
 
-    public void printInventory(){
+    public void printInventory(){ // shows user inventory
         System.out.println("Your inventory currently is:");
         for(int i=0; i<inventory.size(); i++){
             System.out.println("- "+inventory.get(i));
         }
     }
 
-    public void harvestPlant(){
+    public void harvestPlant(){ // gives the user the option to harvest a mature or wilted plant
         Scanner keyboard = new Scanner(System.in);
         checkGarden();
         System.out.println("which plant to harvest?");
@@ -227,7 +234,7 @@ public class gardenPlants
         }
 
     }
-    public void checkGarden(){
+    public void checkGarden(){ // prints out the user's garden
         System.out.print("#");
         for(int n=0; n<plots.length; n++){
             System.out.print(" "+(n+1));
@@ -236,7 +243,7 @@ public class gardenPlants
         for(int y=0; y<plots.length; y++){
             System.out.print(y+1+"|");
 
-            for(int x=0; x<plots.length; x++){
+            for(int x=0; x<plots.length; x++){ // prints out the corresponding character based on the plant
                 if(plots[x][y] == null){
                     System.out.print("X|");
                 }else if(plots[x][y].getPlantType().equals("mango")){
