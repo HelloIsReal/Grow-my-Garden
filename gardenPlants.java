@@ -210,12 +210,14 @@ public class gardenPlants
         keyboard.nextLine();
         if(plots[plotX][plotY] != null){
             // Need to add checking for if the plant is fully grown.
-            if(plots[plotX][plotY].getPlantState()>=3){
-                if(plots[plotX][plotY].getPlantType().equals("mango")){
-
-                }
+            if(plots[plotX][plotY].getPlantState()==3){
                 System.out.println(plots[plotX][plotY].getPlantType()+" Harvested!");
                 gold += plots[plotX][plotY].getPlantValue() * sellPriceMultiplier;
+                plots[plotX][plotY] = null;
+            
+            }else if(plots[plotX][plotY].getPlantState()>=4){
+                System.out.println(plots[plotX][plotY].getPlantType()+" Harvested! Though it was wilted :( (you earned 2x less)");
+                gold += (plots[plotX][plotY].getPlantValue() * sellPriceMultiplier) / 2;
                 plots[plotX][plotY] = null;
             }else{
                 System.out.println(plots[plotX][plotY].getPlantType()+" is not yet mature!");
