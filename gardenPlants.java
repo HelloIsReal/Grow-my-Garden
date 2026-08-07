@@ -195,8 +195,8 @@ public class gardenPlants
     public void harvestPlant(){
         Scanner keyboard = new Scanner(System.in);
         checkGarden();
-        System.out.print("which plant to harvest?");
-        System.out.println("X value first, Y value after (each value seperately))");
+        System.out.println("which plant to harvest?");
+        System.out.println("X value first, Y value after (each value seperately)");
         while(!keyboard.hasNextInt()){
             System.out.println("Invalid input");
             keyboard.nextLine();
